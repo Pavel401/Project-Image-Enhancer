@@ -12,13 +12,12 @@ def instantiate_model():
         "keras-io/lowlight-enhance-mirnet", compile=False)
     return model
 
-x
+
 @st.cache(persist=True, allow_output_mutation=True, show_spinner=False, suppress_st_warning=True)
 def enhance_image(uploaded_image, downloaded_image):
     model = instantiate_model()
     low_light_img = Image.open(uploaded_image).convert('RGB')
-    #width, height = low_light_img.size
-    #low_light_img = low_light_img.resize((256,256),Image.NEAREST)
+    
 
     image = tf.keras.utils.img_to_array(low_light_img)
     image = image.astype('float32') / 255.0
@@ -39,3 +38,6 @@ def enhance_image(uploaded_image, downloaded_image):
 def download_success():
     st.balloons()
     st.success('✅ Download Successful !!')
+
+
+
